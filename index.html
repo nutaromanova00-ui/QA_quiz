@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Тренажёр для ручного тестировщика: карточки и тесты с пояснениями, прогресс сохраняется">
+    <meta name="author" content="QA Learner">
+    <title>QA Тренажёр | Ручное тестирование</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐞</text></svg>">
+</head>
+<body>
+<div class="app-container">
+    <!-- Прогресс-бар -->
+    <div class="progress-section">
+        <div class="stats-row">
+            <span>📊 Ваш прогресс в тестах</span>
+            <span id="correctStats">✅ 0 / 0</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span id="percentLabel">0% правильных ответов</span>
+            <button class="reset-stats-btn" id="clearStatsBtn" aria-label="Сбросить статистику">🗑️ Сбросить статистику</button>
+        </div>
+    </div>
+
+    <!-- Вкладки -->
+    <div class="mode-tabs">
+        <button class="mode-btn active" data-mode="flashcard">📇 Карточки</button>
+        <button class="mode-btn" data-mode="quiz">✍️ Тест с пояснениями</button>
+    </div>
+
+    <!-- Режим карточек -->
+    <div id="flashcardMode">
+        <div class="flashcard" id="flashcardEl">
+            <div class="flip-inner">
+                <div class="front">
+                    <div class="question-text" id="frontText"></div>
+                    <div class="flip-hint">👆 Нажми, чтобы узнать ответ</div>
+                </div>
+                <div class="back">
+                    <h3>📖 Развёрнутый ответ</h3>
+                    <p id="backText"></p>
+                </div>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-card-btn" id="prevCardBtn">◀ Назад</button>
+            <span class="counter" id="flashcardCounter"></span>
+            <button class="nav-card-btn" id="nextCardBtn">Вперёд ▶</button>
+        </div>
+        <div style="text-align: center; margin-top: 18px;">
+            <button class="reset-btn" id="resetFlipBtn">🔄 Перемешать карточки</button>
+        </div>
+    </div>
+
+    <!-- Режим теста -->
+    <div id="quizMode" style="display: none;">
+        <div class="quiz-card">
+            <div class="quiz-question" id="quizQuestion"></div>
+            <div class="options-list" id="quizOptions"></div>
+            <div id="quizExplanation"></div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+                <button class="next-btn" id="nextQuizBtn">➡️ Следующий вопрос</button>
+                <button class="reset-btn" id="resetQuizBtn">🎲 Перемешать</button>
+            </div>
+            <div class="counter" id="quizCounter" style="margin-top: 20px;"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>🐞 Прогресс сохраняется в браузере • Каждый правильный ответ повышает процент освоения</p>
+        <p>📚 Все темы для собеседования: API, REST/SOAP, БД, тест-дизайн, баг-репорты и другое</p>
+    </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="storage.js"></script>
+<script src="flashcards.js"></script>
+<script src="quiz.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
